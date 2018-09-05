@@ -46,6 +46,10 @@ public class Jogador {
     public void addCartaJogador(Carta carta){
         cartaJogador.add(carta);
     }
+    
+    public void LimparCartas() {
+    	cartaJogador.clear();		
+	}
 
     //Método Get Apelido
     public String getApelido() {
