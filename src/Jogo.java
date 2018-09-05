@@ -5,7 +5,7 @@ public class Jogo {
 	
 	public Jogo() {
 		brl = new Baralho();
-		brl.CriarBaralho();// Imagino que esta classe já está no constructor. //Confirmar
+		//brl.CriarBaralho();// Imagino que esta classe já está no constructor. // está no construtor, não precisa chamar isso
 		brl.MostrarBaralho();
 	}
 	
