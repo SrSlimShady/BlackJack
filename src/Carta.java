@@ -48,6 +48,12 @@ public class Carta {
 	public int getValor() {
 		return Valor;
 	}
+	public String getNaipe() {
+		return Naipe;
+	}
+	public String getTipo() {
+		return Tipo;
+	}
 
 	
 }
