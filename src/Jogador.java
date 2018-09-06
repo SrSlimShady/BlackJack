@@ -13,11 +13,25 @@ public class Jogador {
         cartaJogador = new ArrayList<>();
     }
 
+    
+    /******************* MÉTODOS CONTROLE JOGADOR *****************************/
+    //Método Get Apelido
+    public String getApelido() {
+        return apelido;
+
+    }
+
+    //Método Set Apelido
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+    
+    /******************* MÉTODOS CONTROLE DO DINHEIRO *****************************/
     //Metodo Get money
     public double getMoney() {
         return money;
     }
-
+    
     //Metodo para Setar o money
     /*
     * Metodo Setter do Dinheiro.
@@ -41,24 +55,48 @@ public class Jogador {
                 break;
         }
     }
-
-
+    
+    /******************* MÉTODOS CONTROLE CARTAS *****************************/
+    //Método para adicionar uma carta ao jogador
     public void addCartaJogador(Carta carta){
         cartaJogador.add(carta);
     }
     
+    
+    //Método para limpar uma carta do jogador
     public void LimparCartas() {
     	cartaJogador.clear();		
 	}
-
-    //Método Get Apelido
-    public String getApelido() {
-        return apelido;
-
+    
+    //Método para retornar valor da carta    
+    public int ValorCartasJogador(){
+        int valor = 0;
+        for(Carta carta : cartaJogador){
+            
+            if(carta.getValor() < 11){
+                valor += carta.getValor();
+            }else if(carta.getValor() > 10 && carta.getValor() < 15){
+                valor += 10;
+            }
+            
+            //falta colocar a regra para o ACE que pode ser 1 ou 11
+        }
+        return valor;
+    }
+    
+    //Método para impressão das cartas do jogador
+    public void imprimeCartasJogador(){
+        if(cartaJogador != null){
+            for(Carta carta : cartaJogador){
+            	
+//            	carta.naipe
+//            	carta.tipo
+//            	
+                System.out.print(carta.toString() + " ");
+            }                
+        }
+        
+        System.out.println("");
     }
 
-    //Método Set Apelido
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
-    }
 }

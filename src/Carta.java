@@ -26,12 +26,12 @@ public class Carta {
 		else if(Naipe.equals("O"))
 			naipe = "Ouro";
 		else if(Naipe.equals("C"))
-			naipe = "Copas";
+			naipe = "♠";
 		else
 			naipe = "Espadas";
 		
 		if(Tipo.equals("A"))
-			tipo = "�s";
+			tipo = "Ás";
 		else if(Tipo.equals("J"))
 			tipo = "Valete";
 		else if(Tipo.equals("Q"))
@@ -44,5 +44,10 @@ public class Carta {
 		System.out.println(tipo + " De " + naipe);
 			
 	}
+	
+	public int getValor() {
+		return Valor;
+	}
+
 	
 }

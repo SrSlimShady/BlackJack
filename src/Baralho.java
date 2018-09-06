@@ -40,4 +40,9 @@ import java.util.Random;
     		carta.Mostrar();
     	}
     }
+    
+    public Carta receberCarta() {
+    	return baralho.remove(0);
+    }
+    
 }
