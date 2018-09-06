@@ -19,11 +19,15 @@ public class Main {
 		tmPag -= 1; //necessário diminuir 1
 		int dec=0; //contador de decremento de linha
 		
-			
+		String[][] cartas = {{"3","A","2","5","K","J","8"},{"♣","♠","♥","♠","♦","♣","♥"}};
+		
+		
+		
+		
 		
 		//MOLDE
 		int moldeOpt = 1;
-		int tm = 79;
+		int tm = 83;
 		
 		//MENU
 		int optMolde = 0; //0 = simples ou 1 = duplo
@@ -35,6 +39,12 @@ public class Main {
 		Scanner entrada = new Scanner(System.in);
 		int opcao, opt = 0, temMolde=0;
 		String msg="", head="";
+		
+		int tmIMPARhz = 11;
+		int tmIMPARvt = 7;
+//		mol.MoldeCartas(cartas, moldeOpt, tmIMPARhz, tmIMPARvt);
+//		String[] menu = {"1 - Novos Jogadores","APOSTA = R$ 30.0","99 - Sair"};
+//		mol.MoldeHZ(menu, 1, tmMolde, true);
 		
 		//COMEÇO
 		do {

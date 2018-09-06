@@ -20,7 +20,7 @@ public class Jogo {
 				int dec=0; //contador de decremento de linha
 		//MOLDE
 				int moldeOpt = 1;
-				int tm = 79;
+				int tm = 83;
 		//MENU
 				int optMolde = 0; //0 = simples ou 1 = duplo
 				int tmMolde = 25;
