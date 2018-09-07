@@ -56,18 +56,13 @@ public class Jogo {
 		for (int i = 0; i < 50; ++i) System.out.println(); //ESPAÇO BRANCO	
 		//IMPRESSÃO DO TOPO
 		mol.Titulo(); /*9 LINHAS*/ dec += 9;
-		mol.Molde("1ª RODADA", moldeOpt, tm); /* 3 LINHAS */ dec += 3;
+		mol.Molde("1ª RODADA   |   APOSTA: "+aposta, moldeOpt, tm); /* 3 LINHAS */ dec += 3;
 		/**********************************************************************/
-		System.out.printf("\n");  /* 1 LINHA */ dec += 1;
-		mol.Molde(("1 - "+jogador1.getApelido()+" | R$ "+jogador1.getMoney())		,optMolde,tmMolde);  /* 3 LINHAS */ dec += 3;
-		mol.Molde(("1 - "+jogador2.getApelido()+" | R$ "+jogador2.getMoney())		,optMolde,tmMolde);  /* 3 LINHAS */ dec += 3;	
 		
-		System.out.printf("\n\n\n");  /* 1 LINHA */ dec += 3;
-		
-		System.out.println("--> Rodada Iniciada");  /* 1 LINHA */ dec += 1;
-		System.out.println("--> Valor da aposta R$ "+(aposta));  /* 1 LINHA */ dec += 1;
-		System.out.println("--> A banca está distribuindo as cartas...\n");  /* 1 LINHA */ dec += 1;
-		
+//		System.out.println("--> Rodada Iniciada");  /* 1 LINHA */ dec += 1;
+		System.out.println("\n--> A banca está distribuindo as cartas!");  /* 1 LINHA */ dec += 1;
+		System.out.println("\n");  /* 1 LINHA */ dec += 1;
+
 		
 		
 		/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -78,15 +73,30 @@ public class Jogo {
 		//2ª CARTA
 		jogador1.addCartaJogador(brl.receberCarta()); //Método de retirar uma carta da coleção
 		
+		
 		//1ª CARTA
 		jogador2.addCartaJogador(brl.receberCarta()); //Método de retirar uma carta da coleção
 		//2ª CARTA
 		jogador2.addCartaJogador(brl.receberCarta()); //Método de retirar uma carta da coleção
 
-		
-		jogador1.ValorCartasJogador();
 		/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 		
+		
+		//CABEÇALHO DOS JOGADORES
+		String[] menu1={("1 - "+jogador1.getApelido()+" | R$ "+jogador1.getMoney()),("PONTUAÇÃO: "+jogador1.somarCartas())};
+		mol.MoldeHZ(menu1, optMolde, tmMolde, true);  /* 3 LINHAS */ dec += 3;	
+		
+		//IMPRIME CARTAS
+		jogador1.imprimeCartasJogador(); /* 3 LINHAS */ dec += 7;
+		
+		System.out.println("\n");  /* 1 LINHA */ dec += 1;
+		
+		//CABEÇALHO DOS JOGADORES
+		String[] menu2={("2 - "+jogador2.getApelido()+" | R$ "+jogador2.getMoney()),("PONTUAÇÃO: "+jogador2.somarCartas())};
+		mol.MoldeHZ(menu2, optMolde, tmMolde, true);  /* 3 LINHAS */ dec += 3;	
+		
+		//IMPRIME CARTAS
+		jogador2.imprimeCartasJogador(); /* 3 LINHAS */ dec += 7;
 		
 		
 		/*ESPAÇO BRANCO*/

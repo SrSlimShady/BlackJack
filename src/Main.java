@@ -93,7 +93,8 @@ public class Main {
 					/*ESPAÇO BRANCO*/
 					for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;
 					System.out.println("Porfavor, digite o Nome do 1º Jogador: "); // 1 LINHA
-					String apelido1 = entrada.next();
+//					String apelido1 = entrada.next();
+					String apelido1 = "JOÃO";
 					
 					/******************************||||||||||||||||||||||||||||||||||************************************/
 					//IMPRESSÃO DO TOPO
@@ -109,7 +110,8 @@ public class Main {
 					/*ESPAÇO BRANCO*/
 					for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;					
 					System.out.println("Porfavor, digite o valor (R$) total do 1º Jogador: "); // 1 LINHA
-					double money1 = entrada.nextDouble();
+//					double money1 = entrada.nextDouble();
+					double money1 = 500;
 
 					/******************************||||||||||||||||||||||||||||||||||************************************/
 					//IMPRESSÃO DO TOPO
@@ -131,7 +133,8 @@ public class Main {
 					/*ESPAÇO BRANCO*/
 					for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;
 					System.out.println("Porfavor, digite o Nome do 2º Jogador: "); // 1 LINHA
-					String apelido2 = entrada.next();
+//					String apelido2 = entrada.next();
+					String apelido2 = "CAIO";
 					
 					/******************************||||||||||||||||||||||||||||||||||************************************/
 					//IMPRESSÃO DO TOPO
@@ -148,7 +151,8 @@ public class Main {
 					/*ESPAÇO BRANCO*/
 					for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;					
 					System.out.println("Porfavor, digite o o valor (R$) total 2º Jogador: "); // 1 LINHA
-					double money2 = entrada.nextDouble();
+//					double money2 = entrada.nextDouble();
+					double money2 = 400;
 
 					/******************************||||||||||||||||||||||||||||||||||************************************/
 					//IMPRESSÃO DO TOPO
@@ -169,8 +173,8 @@ public class Main {
 					for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;	
 					
 					System.out.println("Precione 1 para JOGAR ou 0 para voltar ao MENU: "); // 1 LINHA
-					int opt2 = entrada.nextInt();
-
+//					int opt2 = entrada.nextInt();
+					int opt2 = 1;
 					
 					
 					/************************************************************************/
@@ -193,7 +197,8 @@ public class Main {
 						/*ESPAÇO BRANCO*/
 						for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;						
 						System.out.println("Porfavor, digite o o valor da aposta: "); // 1 LINHA
-						double aposta = entrada.nextDouble();
+//						double aposta = entrada.nextDouble();
+						double aposta = 10;
 						
 						Jogo novoJogo = new Jogo();
 						novoJogo.Rodada(aposta, jogador1, jogador2);
@@ -237,6 +242,7 @@ public class Main {
 			}
 			
 			opcao = entrada.nextInt();
+//			opcao = 1;
 			switch (opcao) {
 				case 1: // criar
 					head="Novos Jogadores";

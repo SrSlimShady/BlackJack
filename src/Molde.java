@@ -164,6 +164,7 @@ public class Molde {
 						}
 					}
 					else if(j==1) {
+						if(cartas[0][pos].length()==2)j++;
 						System.out.printf("%s", cartas[0][pos]); // NUMERO DA CARTA
 						pos++;
 					}
@@ -194,8 +195,14 @@ public class Molde {
 							j=99;
 						}
 					}
-					else if(j==(tmIMPARhz-2)) {
+					else if( cartas[0][pos].length()==2 && j==(tmIMPARhz-3)) {
+						System.out.printf("%s", cartas[0][pos]); // NUMERO DA CARTA 10
+						j++;
+						pos++;
+					}
+					else if(j==(tmIMPARhz-2) && cartas[0][pos].length()!=2) {
 						System.out.printf("%s", cartas[0][pos]); // NUMERO DA CARTA
+//						j+=2;
 						pos++;
 					}
 					else if(j<(tmIMPARhz-1)) System.out.printf(" ");

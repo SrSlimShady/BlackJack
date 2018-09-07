@@ -4,13 +4,14 @@ import java.util.Random;
  public class Baralho {
 	 
     private ArrayList<Carta> baralho;
-    private String[] Naipes = {"P","O","C","E"}; //Paus, Ouro, Copa, Espadas
+    private String[] Naipes = {"♣","♦","♥","♠"}; //Paus, Ouro, Copa, Espadas
     private String[] Tipos = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
     
-    // somente instacie esta classe, que ela j� inicia as cartas.
+    // somente instacie esta classe, que ela já inicia as cartas.
      public Baralho(){
         baralho = new ArrayList<Carta>();
         for (String naipe : Naipes ) {
+        	
             for (String tipo : Tipos ) {
                 baralho.add(new Carta(naipe,tipo));
             }
@@ -25,7 +26,7 @@ import java.util.Random;
     	//For para embaralhar
     	for(int i = 0; i < tamanho; i++) {
     		maximo = tamanho - i;
-    		// o aleatorio vai de 0 at� o valor que eu passei. que � o tamanho menos o index
+    		// o aleatorio vai de 0 até o valor que eu passei. que é o tamanho menos o index
     		int index = aleatorio.nextInt(maximo);
     		Carta a = baralho.get(index);
     		baralho.remove(index);

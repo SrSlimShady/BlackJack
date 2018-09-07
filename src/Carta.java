@@ -26,7 +26,7 @@ public class Carta {
 		else if(Naipe.equals("O"))
 			naipe = "Ouro";
 		else if(Naipe.equals("C"))
-			naipe = "♠";
+			naipe = "Copas";
 		else
 			naipe = "Espadas";
 		
