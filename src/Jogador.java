@@ -5,6 +5,7 @@ public class Jogador {
     private String apelido;
     private double money = 100;
     private ArrayList<Carta> cartaJogador;
+    private double pontuacao=0;
 
     //Constructor: jogador recebe um apelido.
     public Jogador(String apelido, double money){
@@ -106,8 +107,16 @@ public class Jogador {
 			mol.MoldeCartas(cartasImp, moldeOpt, tmIMPARhz, tmIMPARvt);
             
         }
-        
-
+    }
+    
+    //Método para guardar potuação da partida
+  //Metodo Get money
+    public double getPontuacao() {
+        return pontuacao;
+    }
+    
+    public void setPontuacao(double pontos ) {
+        this.pontuacao=pontos;
     }
 
 }

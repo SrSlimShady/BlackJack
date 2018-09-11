@@ -231,9 +231,6 @@ public class Molde {
 			}
 			System.out.printf("\n");
 		}
-//		for (int c=32; c<1356; c++) {
-//		    System.out.println(c + ": " + (char)c);
-//		   }
 	}
 	
 	
@@ -252,8 +249,36 @@ public class Molde {
 		System.out.println("   └───────────┘                                                   └───────────┘");
 	}
 	
+	public void Titulo(Boolean espaco, String head, int moldeOpt, int tm) {
+		//SAÍDA DE TELA
+		//IMPRESSÃO DO TOPO
+		if (espaco) for (int i = 0; i < 50; ++i) System.out.println(""); //ESPAÇO BRANCO	
+		//Impressão do título
+		System.out.println("___┌───────────┐___________________________________________________┌───────────┐___");
+		System.out.println("   │A          │  ______ _            _      ___            _      │K          │ ");
+		System.out.println("   │           │  | ___ | |          | |    |_  |          | |     │           │ ");
+		System.out.println("   │           │  | |_/ | | __ _  ___| | __   | | __ _  ___| | __  │           │ ");
+		System.out.println("   │     ♥     │  | ___ | |/ _` |/ __| |/ /   | |/ _` |/ __| |/ /  │     ♠     │ ");
+		System.out.println("   │           │  | |_/ | | (_| | (__|   </\\__/ | (_| | (__|   <   │           │");
+		System.out.println("   │           │  \\____/|_|\\__,_|\\___|_|\\_\\____/ \\__,_|\\___|_|\\_\\  │           │");
+		System.out.println("___│          A│___________________________________________________│          K│___");
+		System.out.println("   └───────────┘                                                   └───────────┘");
+		
+		Molde(head, moldeOpt, tm); /* 3 LINHAS */
+
+		System.out.printf("\n");  /* 1 LINHA */
+	}
 	
 	
+	public int RodapeOpt(int tmPag, int dec, String qt) {
+	
+		/*ESPAÇO BRANCO*/
+		for (int i = 0; i < (tmPag - dec); ++i) System.out.println(); /*zerar dec*/ dec=0;
+		System.out.print(qt); // 1 LINHA
+		
+		return dec;
+		
+	}
 	
 
 }

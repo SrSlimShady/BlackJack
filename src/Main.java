@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.util.function.Function;
 
+import javax.sql.RowSetMetaData;
+
 
 
 public class Main {
@@ -11,12 +13,12 @@ public class Main {
 //		Jogo BJ = new Jogo();
 		
 		//Obter o Total de linhas do quadro
-//		for (int i = 0; i < 100; ++i) System.out.println(i); //40 LINHAS
+//		for (int i = 0; i < 100; ++i) System.out.println(i); //41 LINHAS, contando com o 0
 //		System.exit(0);
 		
 		//PAGINA
 		int tmPag = 40;
-		tmPag -= 1; //necessário diminuir 1
+//		tmPag -= 1; //necessário diminuir 1
 		int dec=0; //contador de decremento de linha
 		
 		String[][] cartas = {{"3","A","2","5","K","J","8"},{"♣","♠","♥","♠","♦","♣","♥"}};
@@ -47,9 +49,7 @@ public class Main {
 //		mol.MoldeHZ(menu, 1, tmMolde, true);
 		
 		//COMEÇO
-		do {
-			
-			
+		do {			
 			if (temMolde==0) {
 				
 				//IMPRESSÃO DO TOPO
@@ -59,109 +59,76 @@ public class Main {
 				//MENU
 				mol.Molde("1 - Novos Jogadores"		,optMolde,tmMolde); /* 3 LINHAS */ dec += 3;
 				mol.Molde("99 - Sair"		,optMolde,tmMolde);		 /* 3 LINHAS */ dec += 3;
-				for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;
-				System.out.printf("\nDigite a opcao desejada para 'Lista': "); // 1 LINHA
 				
-				
-				//fazendo a leitura da opção
-				
-				
+				/*RODAPÉ*/
+				dec = mol.RodapeOpt(tmPag, dec, "Digite a opcao desejada para 'Lista': "); // RECEBE ZERO	
 				
 			}
 			else {
-				
-				//IMPRESSÃO DO TOPO
-				mol.Titulo(); /*9 LINHAS*/ dec += 9;
-				mol.Molde(head, moldeOpt, tm); /* 3 LINHAS */ dec += 3;
-				
 				//chamar as opções
 				switch (opt) {
 				case 1:
-					
-					/*
-					 * São 52 cartas sendo, A,2,3,4,5,6,7,8,9,10,J,Q,K
-					 * 
-					 * 
-					 * 
-					 * */
-					
-					
+
 					/************************************************************************/
 					/*******************         1º JOGADOR                ******************/
 					/************************************************************************/
 					
-					/*ESPAÇO BRANCO*/
-					for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;
-					System.out.println("Porfavor, digite o Nome do 1º Jogador: "); // 1 LINHA
+					//IMPRESSÃO DO TOPO
+					mol.Titulo(true, head, moldeOpt, tm); /*9 LINHAS*/ dec += 9+3+1;
+					
+					
+					/*RODAPÉ*/
+					dec = mol.RodapeOpt(tmPag, dec, "Porfavor, digite o Nome do 1º Jogador: ");
 //					String apelido1 = entrada.next();
 					String apelido1 = "JOÃO";
 					
 					/******************************||||||||||||||||||||||||||||||||||************************************/
 					//IMPRESSÃO DO TOPO
-					for (int i = 0; i < 50; ++i) System.out.println(); //ESPAÇO BRANCO	
-					//IMPRESSÃO DO TOPO
-					mol.Titulo(); /*9 LINHAS*/ dec += 9;
-					mol.Molde(head, moldeOpt, tm); /* 3 LINHAS */ dec += 3;
-					/**********************************************************************/
-					System.out.printf("\n");  /* 1 LINHA */ dec += 1;
+					mol.Titulo(true, head, moldeOpt, tm); /*9 LINHAS*/ dec += 9+3+1;
+					
 					mol.Molde(("1 - "+apelido1)		,optMolde,25);  /* 3 LINHAS */ dec += 3;
 					
 					
-					/*ESPAÇO BRANCO*/
-					for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;					
-					System.out.println("Porfavor, digite o valor (R$) total do 1º Jogador: "); // 1 LINHA
+					/*RODAPÉ*/
+					dec = mol.RodapeOpt(tmPag, dec, "Porfavor, digite o valor (R$) total do 1º Jogador: "); // RECEBE ZERO
 //					double money1 = entrada.nextDouble();
 					double money1 = 500;
 
 					/******************************||||||||||||||||||||||||||||||||||************************************/
 					//IMPRESSÃO DO TOPO
-					for (int i = 0; i < 50; ++i) System.out.println(); //ESPAÇO BRANCO	
-					//IMPRESSÃO DO TOPO
-					mol.Titulo(); /*9 LINHAS*/ dec += 9;
-					mol.Molde(head, moldeOpt, tm); /* 3 LINHAS */ dec += 3;
-					/**********************************************************************/
-					System.out.printf("\n");  /* 1 LINHA */ dec += 1;
+					mol.Titulo(true, head, moldeOpt, tm); /*9 LINHAS*/ dec += 9+3+1;
+					
 					mol.Molde(("1 - "+apelido1+" | R$ "+money1)		,optMolde,25);  /* 3 LINHAS */ dec += 3;
 					
 					//CRIANDO O 1º JOGADOR
 					Jogador jogador1 = new Jogador(apelido1, money1);
 					
-					/************************************************************************/
-					/*******************         2º JOGADOR                ******************/
-					/************************************************************************/
+					/*                ************************************************************************/
+					/*<---------------*******************         2º JOGADOR                ******************/
+					/*                ***********************************************************************/
 					
-					/*ESPAÇO BRANCO*/
-					for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;
-					System.out.println("Porfavor, digite o Nome do 2º Jogador: "); // 1 LINHA
+					/*RODAPÉ*/
+					dec = mol.RodapeOpt(tmPag, dec, "Porfavor, digite o Nome do 2º Jogador: "); // RECEBE ZERO
 //					String apelido2 = entrada.next();
 					String apelido2 = "CAIO";
 					
 					/******************************||||||||||||||||||||||||||||||||||************************************/
 					//IMPRESSÃO DO TOPO
-					for (int i = 0; i < 50; ++i) System.out.println(); //ESPAÇO BRANCO	
-					//IMPRESSÃO DO TOPO
-					mol.Titulo(); /*9 LINHAS*/ dec += 9;
-					mol.Molde(head, moldeOpt, tm); /* 3 LINHAS */ dec += 3;
-					/**********************************************************************/
-					System.out.printf("\n");  /* 1 LINHA */ dec += 1;
+					mol.Titulo(true, head, moldeOpt, tm); /*9 LINHAS*/ dec += 9+3+1;
+
 					mol.Molde(("1 - "+apelido1+" | R$ "+money1)		,optMolde,25);  /* 3 LINHAS */ dec += 3;
 					mol.Molde(("1 - "+apelido2)		,optMolde,25);  /* 3 LINHAS */ dec += 3;
 					
 					
-					/*ESPAÇO BRANCO*/
-					for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;					
-					System.out.println("Porfavor, digite o o valor (R$) total 2º Jogador: "); // 1 LINHA
+					/*RODAPÉ*/
+					dec = mol.RodapeOpt(tmPag, dec, "Porfavor, digite o o valor (R$) total 2º Jogador: "); // RECEBE ZERO				
 //					double money2 = entrada.nextDouble();
 					double money2 = 400;
 
 					/******************************||||||||||||||||||||||||||||||||||************************************/
 					//IMPRESSÃO DO TOPO
-					for (int i = 0; i < 50; ++i) System.out.println(); //ESPAÇO BRANCO	
-					//IMPRESSÃO DO TOPO
-					mol.Titulo(); /*9 LINHAS*/ dec += 9;
-					mol.Molde(head, moldeOpt, tm); /* 3 LINHAS */ dec += 3;
-					/**********************************************************************/
-					System.out.printf("\n");  /* 1 LINHA */ dec += 1;
+					mol.Titulo(true, head, moldeOpt, tm); /*9 LINHAS*/ dec += 9+3+1;
+					
 					mol.Molde(("1 - "+apelido1+" | R$ "+money1)		,optMolde,25);  /* 3 LINHAS */ dec += 3;
 					mol.Molde(("1 - "+apelido2+" | R$ "+money2)		,optMolde,25);  /* 3 LINHAS */ dec += 3;
 					
@@ -169,10 +136,9 @@ public class Main {
 					Jogador jogador2 = new Jogador(apelido2, money2);
 					
 		
-					/*ESPAÇO BRANCO*/
-					for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;	
+					/*RODAPÉ*/
+					dec = mol.RodapeOpt(tmPag, dec, "Precione 1 para JOGAR ou 0 para voltar ao MENU: "); // RECEBE ZERO		
 					
-					System.out.println("Precione 1 para JOGAR ou 0 para voltar ao MENU: "); // 1 LINHA
 //					int opt2 = entrada.nextInt();
 					int opt2 = 1;
 					
@@ -183,25 +149,8 @@ public class Main {
 
 					if (opt2==1) {
 						//TODO
-						/******************************||||||||||||||||||||||||||||||||||************************************/
-						//IMPRESSÃO DO TOPO
-						for (int i = 0; i < 50; ++i) System.out.println(); //ESPAÇO BRANCO	
-						//IMPRESSÃO DO TOPO
-						mol.Titulo(); /*9 LINHAS*/ dec += 9;
-						mol.Molde("1ª RODADA", moldeOpt, tm); /* 3 LINHAS */ dec += 3;
-						/**********************************************************************/
-						System.out.printf("\n");  /* 1 LINHA */ dec += 1;
-						mol.Molde(("1 - "+apelido1+" | R$ "+money1)		,optMolde,25);  /* 3 LINHAS */ dec += 3;
-						mol.Molde(("1 - "+apelido2+" | R$ "+money2)		,optMolde,25);  /* 3 LINHAS */ dec += 3;	
-						
-						/*ESPAÇO BRANCO*/
-						for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;						
-						System.out.println("Porfavor, digite o o valor da aposta: "); // 1 LINHA
-//						double aposta = entrada.nextDouble();
-						double aposta = 10;
-						
 						Jogo novoJogo = new Jogo();
-						novoJogo.Rodada(aposta, jogador1, jogador2);
+						novoJogo.Rodada(jogador1, jogador2);
 
 						/******************************||||||||||||||||||||||||||||||||||************************************/
 					}
@@ -216,8 +165,9 @@ public class Main {
 						//MENU
 						mol.Molde("1 - Novos Jogadores"		,optMolde,tmMolde); /* 3 LINHAS */ dec += 3;
 						mol.Molde("99 - Sair"		,optMolde,tmMolde);		 /* 3 LINHAS */ dec += 3;
-						for (int i = 0; i < (tmPag - dec - 1 ); ++i) System.out.println(); /*zerar dec*/ dec=0;
-						System.out.printf("\nDigite a opcao desejada para 'Lista': "); // 1 LINHA
+						
+						/*RODAPÉ*/
+						dec = mol.RodapeOpt(tmPag, dec, "Digite a opcao desejada para 'Lista': "); // RECEBE ZERO	
 						
 						
 						//fazendo a leitura da opção
@@ -252,15 +202,15 @@ public class Main {
 					opt = 1;
 					break;
 				case 99: //sair
-//					for (int i = 0; i < 17; ++i) System.out.println();
-					mol.Titulo();
-					mol.Molde("Sair", moldeOpt, tm);
-					System.out.printf("\n\nVocê saiu do Jogo.");
-					for (int i = 0; i < 25; ++i) System.out.println();
+					//IMPRESSÃO DO TOPO
+					mol.Titulo(true, "SAIR", moldeOpt, tm); /*9 LINHAS*/ dec += 9+3+1;
+					
+					/*RODAPÉ*/
+					dec = mol.RodapeOpt(tmPag, dec, "Você saiu do Jogo."); // RECEBE ZERO	
 					break;
 				default: // opcao invalida
 					msg = "Opcao Invalida!";
-					for (int i = 0; i < 50; ++i) System.out.println();
+					for (int i = 0; i < 50; ++i) System.out.println(); dec=0;
 			}
 		} while (opcao != 99); // opcao de saida
 		
