@@ -50,6 +50,9 @@ public class Jogo {
 		/******************************||||||||||||||||||||||||||||||||||************************************/
 		
 		do {
+			/************************************************************************/
+			/*******************      CONFIGURAR A APOSTA          ******************/
+			/************************************************************************/
 			//IMPRESSÃO DO TOPO
 			mol.Titulo(true, "INICIAR APOSTA", moldeOpt, tm); /*9 LINHAS*/ dec += 9+3+1;
 			do{
@@ -63,6 +66,21 @@ public class Jogo {
 			dec = mol.RodapeOpt(tmPag, dec, "Porfavor, digite o o valor da aposta: "); // RECEBE ZERO	
 			
 			double aposta = entrada.nextDouble();
+			
+			
+			
+			
+			
+			
+			/********************** FAZER A REGRA PARA APOSTA ENQUANTO TIVEREM DINHEIRO E SE O VALOR DA APOSTA FOR POSSÍVEL (SALDO) *****************/
+	
+			
+			
+			
+			
+			
+			
+			
 	//		double aposta = 10;
 					
 			
