@@ -16,40 +16,14 @@ public class Carta {
             Valor = Integer.parseInt(tipo);
         }
 	}
-    
-	public void Mostrar() {
-		String naipe;
-		String tipo;
-		
-		if(Naipe.equals("P"))
-			naipe = "Paus";
-		else if(Naipe.equals("O"))
-			naipe = "Ouro";
-		else if(Naipe.equals("C"))
-			naipe = "Copas";
-		else
-			naipe = "Espadas";
-		
-		if(Tipo.equals("A"))
-			tipo = "Ás";
-		else if(Tipo.equals("J"))
-			tipo = "Valete";
-		else if(Tipo.equals("Q"))
-			tipo = "Dama";
-		else if(Tipo.equals("K"))
-			tipo = "Rei";
-		else
-			tipo = Tipo;
-		
-		System.out.println(tipo + " De " + naipe);
-			
-	}
 	
 	public int getValor() {
 		return Valor;
 	}
+	
 	public String getNaipe() {
 		return Naipe;
+	
 	}
 	public String getTipo() {
 		return Tipo;

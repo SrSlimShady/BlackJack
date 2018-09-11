@@ -11,7 +11,6 @@ import java.util.Random;
      public Baralho(){
         baralho = new ArrayList<Carta>();
         for (String naipe : Naipes ) {
-        	
             for (String tipo : Tipos ) {
                 baralho.add(new Carta(naipe,tipo));
             }
@@ -28,19 +27,14 @@ import java.util.Random;
     		maximo = tamanho - i;
     		// o aleatorio vai de 0 até o valor que eu passei. que é o tamanho menos o index
     		int index = aleatorio.nextInt(maximo);
-    		Carta a = baralho.get(index);
-    		baralho.remove(index);
+    		Carta a = baralho.remove(index);
+    		//baralho.remove(index);
     		NovoBaralho.add(i, a);
     	}
     	//Baralho atual recebe o baralho embaralhado
     	baralho = NovoBaralho;
     }
-    
-    public void MostrarBaralho(){
-    	for(Carta carta : baralho) {
-    		carta.Mostrar();
-    	}
-    }
+   
     
     public Carta receberCarta() {
     	return baralho.remove(0);
