@@ -3,14 +3,14 @@ import java.util.ArrayList;
 public class Jogador {
 
     private String apelido;
-    private double money = 100;
+    private double Money;
     private ArrayList<Carta> cartaJogador;
     private double pontuacao=0;
 
     //Constructor: jogador recebe um apelido.
     public Jogador(String apelido, double money){
         this.apelido = apelido;
-        this.money = money;
+        Money = money;
         cartaJogador = new ArrayList<>();
     }
 
@@ -30,31 +30,22 @@ public class Jogador {
     /******************* MÉTODOS CONTROLE DO DINHEIRO *****************************/
     //Metodo Get money
     public double getMoney() {
-        return money;
+        return Money;
     }
     
-    //Metodo para Setar o money
-    /*
-    * Metodo Setter do Dinheiro.
-    * @<b>Sitaxe:</b><i>Srint setMoney (double money, boolean option)</i>
-    * @money : é o dinheiro a ser usado.
-    * @option : true or 1 = adicionar dinheiro; false, 0 or default = retirar dinheiro;
-    *@autor Johnny Lima
-    */
-    public void setMoney(double money, int option ) {
-        switch (option) {
-            case 1: //Adicionar money
-                    this.money += money;
-                break;
-
-            case 0: //retirar money
-                    this.money -= money;
-                break;
-
-            default: //retirar money
-                    this.money -= money;
-                break;
-        }
+    //Adicionar dinheiro ao jogador
+    public void AddMoney(double money) {
+    	Money += money;
+    }
+    
+    //Remover dinheiro do jogador
+    public boolean RemoveMoney(double money) {
+    	if(money > Money)
+    		return false;
+    	else {
+    		Money = Money - money;
+    		return true;
+    	}
     }
     
     /******************* MÉTODOS CONTROLE CARTAS *****************************/
@@ -74,19 +65,17 @@ public class Jogador {
     	int soma=0, contAce=0;
     	
 		for(Carta carta : cartaJogador){
-        	
         	soma +=carta.getValor();
         	if (carta.getTipo()=="A") contAce++;
         }
 		if(contAce>0 && (soma+10)<=21) soma += 10;
-		
-		return soma;		
+		return soma;
 	}
     
     //Método para impressão das cartas do jogador
     public void imprimeCartasJogador(){
         if(cartaJogador != null){
-        	
+
         	Molde mol = new Molde();
         	
         	int n = cartaJogador.size();

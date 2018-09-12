@@ -61,29 +61,11 @@ public class Jogo {
 			}while(j==Jogadores.size()-1);
 			j=0;
 			
-			
 			/*RODAPÉ*/
 			dec = mol.RodapeOpt(tmPag, dec, "Porfavor, digite o o valor da aposta: "); // RECEBE ZERO	
 			
 			double aposta = entrada.nextDouble();
-			
-			
-			
-			
-			
-			
-			/********************** FAZER A REGRA PARA APOSTA ENQUANTO TIVEREM DINHEIRO E SE O VALOR DA APOSTA FOR POSSÍVEL (SALDO) *****************/
-	
-			
-			
-			
-			
-			
-			
-			
-	//		double aposta = 10;
-					
-			
+
 			/************************************************************************/
 			/*******************      CONFIGURANDO O JOGO          ******************/
 			/************************************************************************/
@@ -92,20 +74,19 @@ public class Jogo {
 			jogador1.LimparCartas();
 			jogador2.LimparCartas();
 			
-			//Fazendo retirada da aposta. de todos os jogadores
-			do{
-				Jogadores.get(j).setMoney(aposta, 0);// 1 = add; 0 = ret;
-				setApostaRodada(aposta, 1);// 1 = add; 0 = zera;
-				j++;
-			}while(j==Jogadores.size()-1);
-			j=0;
+			for(Jogador jogador: Jogadores) {
+				if(!jogador.RemoveMoney(aposta)) {
+					dec = mol.RodapeOpt(tmPag, dec, (jogador.getApelido()+", Saldo insuficiente!"));
+					end = true;
+				} else {
+					setApostaRodada(aposta, 1);// 1 = add; 0 = zera;
+				}
+			}
 	
 			
 			/************************************************************************/
 			/*******************             RODADA                ******************/
 			/************************************************************************/
-			
-			
 			
 			/******************************||||||||||||||||||||||||||||||||||************************************/
 			
@@ -124,7 +105,7 @@ public class Jogo {
 			String head = rodada+"ª RODADA   |   APOSTA: "+aposta;
 	
 			
-			do {
+			while (end != true){
 				if(ultimo)end=true;
 				//IMPRESSÃO DO TOPO
 				mol.Titulo(true, head, moldeOpt, tm); /*9 LINHAS*/ dec += 9+3+1;
@@ -204,19 +185,19 @@ public class Jogo {
 						System.out.println("O Jogo ficou empatado, as aposta serão devolvidas");  /* 1 LINHA */ dec += 1;
 						
 						for(Jogador jogador: Jogadores) {
-							jogador.setMoney(aposta, 1);// 1 = add; 0 = ret;
+							jogador.AddMoney(aposta);
 						}
 						
 						setApostaRodada(0, 0);//ZERANDO A APOSTA
 					}else {
-						Ganhador.get(0).setMoney(getApostaRodada(), 1); //VALOR DA APOSTA AO VENCEDOR
+						Ganhador.get(0).AddMoney(getApostaRodada());//VALOR DA APOSTA AO VENCEDOR
 						setApostaRodada(0, 0);//ZERANDO A APOSTA
 						System.out.println("Parabéns "+Ganhador.get(0).getApelido()+", você ganhdou com "+Ganhador.get(0).getPontuacao()+" pontos. Seu novo Saldo será de R$ "+Ganhador.get(0).getMoney());  /* 1 LINHA */ dec += 1;
 					}
 					end=true;
 				}
 				
-			}while (end==false);
+			};
 			
 			/******************************||||||||||||||||||||||||||||||||||************************************/
 			//ZERAR TODAS AS VARIÁVEIS
