@@ -20,7 +20,8 @@ public class Jogo {
 	
 	public void Rodada(Jogador jogador1,  Jogador jogador2) {
 		
-
+		Jogadores.clear();
+		
 		Jogadores.add(jogador1);
 		Jogadores.add(jogador2);
 		
@@ -41,31 +42,52 @@ public class Jogo {
 				
 		//VARIÁVEIS
 				int opt=1, i=0, j=0, rodada=1, novaRodada=0;
-				boolean end=false, perdeu=false, empate=false, ultimo=false;
-				double somaAtual=1, somaMaior=0, segundaMaior=0;
+				boolean end=false, perdeu=false, empate=false, ultimo=false, iniciaJogo=false;
+				double aposta=0, somaAtual=1, somaMaior=0, segundaMaior=0;
 				List pontuacoes = new ArrayList();
+				String msg="";
 				
 		
 		
 		/******************************||||||||||||||||||||||||||||||||||************************************/
 		
 		do {
-			/************************************************************************/
-			/*******************      CONFIGURAR A APOSTA          ******************/
-			/************************************************************************/
-			//IMPRESSÃO DO TOPO
-			mol.Titulo(true, "INICIAR APOSTA", moldeOpt, tm); /*9 LINHAS*/ dec += 9+3+1;
-			do{
-				mol.Molde(((j+1)+" - "+Jogadores.get(j).getApelido()+" | R$ "+Jogadores.get(j).getMoney())		,optMolde,25);  /* 3 LINHAS */ dec += 3;
-				j++;
-			}while(j==Jogadores.size()-1);
-			j=0;
 			
-			/*RODAPÉ*/
-			dec = mol.RodapeOpt(tmPag, dec, "Porfavor, digite o o valor da aposta: "); // RECEBE ZERO	
 			
-			double aposta = entrada.nextDouble();
-
+			while(iniciaJogo==false) {
+				iniciaJogo=true;
+				/************************************************************************/
+				/*******************      CONFIGURAR A APOSTA          ******************/
+				/************************************************************************/
+				//IMPRESSÃO DO TOPO
+				mol.Titulo(true, "INICIAR APOSTA", moldeOpt, tm); /*9 LINHAS*/ dec += 9+3+1;
+				do{
+					mol.Molde(((j+1)+" - "+Jogadores.get(j).getApelido()+" | R$ "+Jogadores.get(j).getMoney())		,optMolde,25);  /* 3 LINHAS */ dec += 3;
+					j++;
+				}while(j==Jogadores.size()-1);
+				j=0;
+				
+				System.out.printf("\n%s\n",msg); /*o espaço da mensagem contem 2 linhas*/ dec += 2;
+				
+				/*RODAPÉ*/
+				dec = mol.RodapeOpt(tmPag, dec, "Porfavor, digite o o valor da aposta: "); // RECEBE ZERO	
+				
+				aposta = entrada.nextDouble();
+				
+				
+				
+				
+				//Fazendo retirada da aposta. de todos os jogadores
+				for(Jogador jogador: Jogadores) {
+					if(jogador.getMoney()<aposta && iniciaJogo) {
+						msg = (jogador.getApelido()+", seu saldo é insuficiente!");
+						iniciaJogo=false;
+					}
+				}
+	
+				
+			}
+			
 			/************************************************************************/
 			/*******************      CONFIGURANDO O JOGO          ******************/
 			/************************************************************************/
@@ -74,21 +96,21 @@ public class Jogo {
 			jogador1.LimparCartas();
 			jogador2.LimparCartas();
 			
+			//Fazendo retirada da aposta. de todos os jogadores//Fazendo retirada da aposta. de todos os jogadores
 			for(Jogador jogador: Jogadores) {
-				if(!jogador.RemoveMoney(aposta)) {
-					dec = mol.RodapeOpt(tmPag, dec, (jogador.getApelido()+", Saldo insuficiente!"));
-					end = true;
-				} else {
-					setApostaRodada(aposta, 1);// 1 = add; 0 = zera;
-				}
+				jogador.RemoveMoney(aposta);
+				setApostaRodada(aposta, 1);// 1 = add; 0 = zera;
 			}
-	
+			
+			
+			
+			
+			/******************************||||||||||||||||||||||||||||||||||************************************/
+			
 			
 			/************************************************************************/
 			/*******************             RODADA                ******************/
 			/************************************************************************/
-			
-			/******************************||||||||||||||||||||||||||||||||||************************************/
 			
 			/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 			//nessa parte ocorre a distribuição das cartas ao jogadores. Cada jogador recebem 2 cartas para começar.
@@ -178,6 +200,7 @@ public class Jogo {
 						j=0;
 						if(Jogadores.size()==i) ultimo=true;
 					}
+					empate = false;
 				}else {
 					System.out.println();  /* 1 LINHA */ dec += 1;
 					if(empate==true) {
@@ -199,12 +222,12 @@ public class Jogo {
 				
 			};
 			
-			/******************************||||||||||||||||||||||||||||||||||************************************/
 			//ZERAR TODAS AS VARIÁVEIS
-			opt=1; i=0; j=0; rodada+=1; novaRodada=0;
+			opt=1; i=0; j=0; rodada+=1; novaRodada=0;  iniciaJogo=false;
 			end=false; perdeu=false; empate=false; ultimo=false;
 			somaAtual=1; somaMaior=0; segundaMaior=0;
 			pontuacoes.clear(); Ganhador.clear();
+			msg="";
 			
 			
 			/*RODAPÉ*/
@@ -212,9 +235,26 @@ public class Jogo {
 			
 			//LENDO NOVA RODADA
 			novaRodada =  entrada.nextInt();
+			/******************************||||||||||||||||||||||||||||||||||************************************/
+			
 		}while (novaRodada==1);	
-		System.out.println("saiu2");
-	//		System.out.println("Você somou "+ jogador1.ValorCartasJogador()+" pontos com as seguintes cartas: ");
+		
+		
+		/******************************||||||||||||||||||||||||||||||||||************************************/
+		//IMPRESSÃO DO TOPO
+		mol.Titulo(true, "FIM DE JOGO", moldeOpt, tm); /*9 LINHAS*/ dec += 9+3+1;
+		for(Jogador jogador: Jogadores) {
+			mol.Molde(((j+1)+" - "+jogador.getApelido()+" | R$ "+jogador.getMoney())		,optMolde,25);  /* 3 LINHAS */ dec += 3;
+			j++;
+		}
+		j=0;
+		
+		System.out.printf("\nJogo Finalizado.\n"); /*o espaço da mensagem contem 2 linhas*/ dec += 2;
+		
+		/*RODAPÉ*/
+		dec = mol.RodapeOpt(tmPag, dec+2, "Obrigado por jogar conosco!"); // RECEBE ZERO	
+		
+		/******************************||||||||||||||||||||||||||||||||||************************************/
 	}
 	
 	

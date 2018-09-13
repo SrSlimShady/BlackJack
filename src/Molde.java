@@ -118,8 +118,8 @@ public class Molde {
 	public  void MoldeCartas(String[][]  cartas, int moldeOpt, int tmIMPARhz, int tmIMPARvt){ //moldeOpt -> 0 = simples ou 1 = duplo
 		int tmMenu = cartas[0].length;
 		
-		if (tmIMPARhz<5) tmIMPARhz=5; //tamanho mínimo
-		if (tmIMPARvt<7) tmIMPARvt=7; //tamanho mínimo
+		if (tmIMPARhz<7) tmIMPARhz=7; //tamanho mínimo
+		if (tmIMPARvt<5) tmIMPARvt=5; //tamanho mínimo
 		
 //		tmIMPARhz -=1;
 		tmIMPARvt -=1;
